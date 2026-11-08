@@ -1,6 +1,7 @@
 <script setup>
 import { ref, computed } from 'vue'
 import { items } from '../data/items.js'
+import { RouterLink } from 'vue-router'
 
 const keyword = ref('')
 const activeCategory = ref('全部')
@@ -40,14 +41,14 @@ function resetAll() {
   <p class="count">共 {{ filtered.length }} 件</p>
 
 <div v-if="filtered.length" class="list">
-  <div class="item" v-for="item in filtered" :key="item.id">
-  <div class="cover" :style="{ backgroundImage: `url(${item.cover})` }"></div>
-    <div class="body">
-      <h3 class="title">{{ item.title }}</h3>
-      <p class="price">¥ {{ item.price }}</p>
-      <p class="meta">{{ item.category }} · {{ item.location }}</p>
-    </div>
-  </div>
+ <RouterLink class="item" v-for="item in filtered" :key="item.id" :to="`/detail/${item.id}`">
+   <div class="cover" :style="{ backgroundImage: `url(${item.cover})` }"></div>
+     <div class="body">
+       <h3 class="title">{{ item.title }}</h3>
+       <p class="price">¥ {{ item.price }}</p>
+       <p class="meta">{{ item.category }} · {{ item.location }}</p>
+     </div>
+    </RouterLink>
 </div>
 
 <div v-else class="empty">
@@ -58,7 +59,8 @@ function resetAll() {
 </template>
 <style scoped>
 .list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
-.item { background: #fff; border: 1px solid #E3DFD2; border-radius: 10px; overflow: hidden; }
+.item { display: block; color: inherit; text-decoration: none;
+  background: #fff; border: 1px solid #E3DFD2; border-radius: 10px; overflow: hidden; }
 .cover { height: 140px; background: #F2EFE6 center/cover no-repeat; }
 .body { padding: .7rem .85rem .9rem; }
 .title { font-size: .92rem; line-height: 1.4; margin-bottom: .35rem;
