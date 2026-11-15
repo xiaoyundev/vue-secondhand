@@ -7,7 +7,8 @@ import { RouterLink, RouterView } from 'vue-router'
     <nav class="nav">
       <RouterLink to="/">首页</RouterLink>
       <RouterLink to="/list">列表</RouterLink>
-      <RouterLink to="/detail/1">详情</RouterLink>
+      <RouterLink to="/publish">发布</RouterLink>
+      <RouterLink to="/mine">我的</RouterLink>
     </nav>
     <main class="main">
       <RouterView />
